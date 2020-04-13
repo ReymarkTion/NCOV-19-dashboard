@@ -19,14 +19,15 @@ class LeafletMapView extends Component {
         <Map 
           center={this.props.mapData.pos} 
           zoom={this.props.mapData.zoom} 
+        
         >
-          <HeatmapLayer
+          {/*<HeatmapLayer
             fitBoundsOnLoad
             fitBoundsOnUpdate
             points={addressPoints}
             longitudeExtractor={m => m[1]}
             latitudeExtractor={m => m[0]}
-            intensityExtractor={m => parseFloat(m[2])} />
+            intensityExtractor={m => parseFloat(m[2])} />*/}
 
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
