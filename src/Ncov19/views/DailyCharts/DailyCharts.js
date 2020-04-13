@@ -1,94 +1,419 @@
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/js/bootstrap.js';
-//import $ from 'jquery';
-//import Popper from 'popper.js';
 import NavigationBar from '../../components/NavigationBar/NavigationBar';
 import Footer from '../../components/Footer/Footer';
 import React, { Component } from 'react';
-import CountUp from 'react-countup';
-import { IoIosStats } from 'react-icons/io';
 import { MdPlace } from 'react-icons/md';
-import LeafletMapView from '../LeafletMapView/LeafletMapView';
 import '../../../_css/sidebar_style.css';
-import $ from 'jquery';
-
-//import useChartConfig from 'hooks/useChartConfig'
-import { Chart } from 'react-charts'
-
+import Chart from "react-apexcharts";
 
 class DailyCharts extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            map_info: [
+            // fixed
+            place_info: [
                 {
                     name: "Bukidnon",
-                    pos: [8.0515, 124.9230],
-                    zoom: 9.45,
-                    selected: false,
-                    ncov_info: { pum: 232, pui: 655, pc: 342, d: 0, r: 50230 }
+                    selected: false
                 },
                 {
                     name: "Camiguin",
-                    pos: [9.1732, 124.7299],
-                    zoom: 10.49,
-                    selected: false,
-                    ncov_info: { pum: 565, pui: 656, pc: 232, d: 0, r: 46454 }
+                    selected: false
                 },
                 {
                     name: "Lanao del Norte",
-                    pos: [7.8722, 123.8858],
-                    zoom: 10,
-                    selected: false,
-                    ncov_info: { pum: 10, pui: 132, pc: 54, d: 0, r: 23234 }
+                    selected: false
                 },
                 {
                     name: "Misamis Occidental",
-                    pos: [8.3375, 123.70719],
-                    zoom: 9.5,
-                    selected: false,
-                    ncov_info: { pum: 987, pui: 12, pc: 656, d: 0, r: 4544 }
+                    selected: false
                 },
                 {
                     name: "Misamis Oriental",
-                    pos: [8.5046, 124.6220],
-                    zoom: 11,
-                    selected: false,
-                    ncov_info: { pum: 232, pui: 656, pc: 656, d: 0, r: 45466 }
+                    selected: false
                 },
                 {
                     name: "Cagayan de Oro City",
-                    pos: [8.4542, 124.6319],
-                    zoom: 12,
-                    selected: false,
-                    ncov_info: { pum: 211, pui: 546, pc: 242, d: 0, r: 3424 }
+                    selected: false
                 },
                 {
                     name: "Iligan City",
-                    pos: [8.2280, 124.2452],
-                    zoom: 11,
-                    selected: false,
-                    ncov_info: { pum: 667, pui: 121, pc: 323, d: 0, r: 5655 }
+                    selected: false
                 }
-            ]
+            ],
+
+
+            // -------------------------------------------------------------
+            /**
+             *  Note: This data must be sorted in ascending order
+             *  from the server
+             */
+            incov_data: [
+                // March 2
+                {
+                    name: "Bukidnon",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 1, pui: 2, pc: 2, d: 0, r: 0 }
+                },
+                {
+                    name: "Camiguin",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 2, pui: 1, pc: 1, d: 0, r: 2 }
+                },
+                {
+                    name: "Lanao del Norte",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 0, pui: 0, pc: 1, d: 0, r: 1 }
+                },
+                {
+                    name: "Misamis Occidental",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 0, pui: 0, pc: 2, d: 0, r: 2 }
+                },
+                {
+                    name: "Misamis Oriental",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 0, pui: 0, pc: 0, d: 0, r: 0 }
+                },
+                {
+                    name: "Cagayan de Oro City",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 0, pui: 2, pc: 0, d: 0, r: 1 }
+                },
+                {
+                    name: "Iligan City",
+                    date: new Date("March 2, 2020"),
+                    ncov_info: { pum: 2, pui: 1, pc: 0, d: 0, r: 2 }
+                },
+
+
+                // March 3
+                {
+                    name: "Bukidnon",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 3, pui: 6, pc: 10, d: 0, r: 7 }
+                },
+                {
+                    name: "Camiguin",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 6, pui: 7, pc: 8, d: 1, r: 9 }
+                },
+                {
+                    name: "Lanao del Norte",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 10, pui: 7, pc: 5, d: 0, r: 6 }
+                },
+                {
+                    name: "Misamis Occidental",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 7, pui: 10, pc: 9, d: 0, r: 5 }
+                },
+                {
+                    name: "Misamis Oriental",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 6, pui: 5, pc: 9, d: 0, r: 8 }
+                },
+                {
+                    name: "Cagayan de Oro City",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 7, pui: 9, pc: 6, d: 0, r: 4 }
+                },
+                {
+                    name: "Iligan City",
+                    date: new Date("March 3, 2020"),
+                    ncov_info: { pum: 5, pui: 3, pc: 10, d: 0, r: 8 }
+                },
+
+
+                // March 4
+                {
+                    name: "Bukidnon",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 16, pui: 20, pc: 10, d: 0, r: 19 }
+                },
+                {
+                    name: "Camiguin",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 13, pui: 12, pc: 19, d: 0, r: 10 }
+                },
+                {
+                    name: "Lanao del Norte",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 17, pui: 1, pc: 20, d: 0, r: 12 }
+                },
+                {
+                    name: "Misamis Occidental",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 13, pui: 11, pc: 18, d: 0, r: 19 }
+                },
+                {
+                    name: "Misamis Oriental",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 10, pui: 18, pc: 16, d: 0, r: 12 }
+                },
+                {
+                    name: "Cagayan de Oro City",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 14, pui: 16, pc: 12, d: 0, r: 13 }
+                },
+                {
+                    name: "Iligan City",
+                    date: new Date("March 4, 2020"),
+                    ncov_info: { pum: 17, pui: 12, pc: 15, d: 0, r: 12 }
+                },
+
+
+                // March 5
+                {
+                    name: "Bukidnon",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 20, pui: 15, pc: 22, d: 2, r: 18 }
+                },
+                {
+                    name: "Camiguin",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 19, pui: 16, pc: 23, d: 0, r: 21 }
+                },
+                {
+                    name: "Lanao del Norte",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 22, pui: 17, pc: 20, d: 0, r: 23 }
+                },
+                {
+                    name: "Misamis Occidental",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 21, pui: 15, pc: 24, d: 0, r: 19 }
+                },
+                {
+                    name: "Misamis Oriental",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 22, pui: 23, pc: 25, d: 1, r: 15 }
+                },
+                {
+                    name: "Cagayan de Oro City",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 21, pui: 17, pc: 22, d: 0, r: 18 }
+                },
+                {
+                    name: "Iligan City",
+                    date: new Date("March 5, 2020"),
+                    ncov_info: { pum: 19, pui: 24, pc: 19, d: 0, r: 15 }
+                },
+
+
+                // March 6
+                {
+                    name: "Bukidnon",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 35, pui: 25, pc: 30, d: 2, r: 29 }
+                },
+                {
+                    name: "Camiguin",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 28, pui: 32, pc: 29, d: 2, r: 27 }
+                },
+                {
+                    name: "Lanao del Norte",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 26, pui: 32, pc: 30, d: 2, r: 35 }
+                },
+                {
+                    name: "Misamis Occidental",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 35, pui: 29, pc: 31, d: 2, r: 27 }
+                },
+                {
+                    name: "Misamis Oriental",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 37, pui: 30, pc: 35, d: 2, r: 25 }
+                },
+                {
+                    name: "Cagayan de Oro City",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 29, pui: 30, pc: 28, d: 2, r: 27 }
+                },
+                {
+                    name: "Iligan City",
+                    date: new Date("March 6, 2020"),
+                    ncov_info: { pum: 32, pui: 30, pc: 29, d: 2, r: 35 }
+                },
+            ], 
+            // -------------------------------------------------------------
+
+
+            options: {
+                chart: {
+                    height: 350,
+                    type: 'line',
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+                    toolbar: {
+                        show: false
+                    }
+                },
+                colors: ['#620ef1', '#e4f717', '#da0505', "#da5456", "#23a442"],
+                dataLabels: {
+                    enabled: false,
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                title: {
+                    text: 'Daily Records',
+                    align: 'left'
+                },
+                grid: {
+                    borderColor: '#e7e7e7',
+                    row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                markers: {
+                    size: 2
+                },
+                xaxis: {
+                    categories: [],
+                    title: {
+                        text: 'Date'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Number'
+                    },
+                    min: 0,
+                    max: 40
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    floating: true,
+                    offsetY: -25,
+                    offsetX: -5
+                }
+            },
+
+            series: [
+                {
+                    name: "PUM",
+                    data: []
+                },
+                {
+                    name: "PUI",
+                    data: []
+                },
+                {
+                    name: "Positive Cases",
+                    data: []
+                },
+                {
+                    name: "Deaths",
+                    data: []
+                },
+                {
+                    name: "Recoveries",
+                    data: []
+                }
+            ],
+
         };
+
+        this.tmonth = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     }
 
-    set_map_data = (place) => {
+    componentDidMount = () => {
+        //console.log("date now -> ",Date.now);
+        //console.log("date new -> ", new Date());
+        console.log("dt state -> ", this.state.incov_data[0].date);
+    }
+
+    on_place_highlight = (p) => {
         let Arr = [];
-        let map_data = {};
-        (this.state.map_info || []).map((data, index) => {
+        (this.state.place_info || []).map((data, index) => {
             data.selected = false;
-            if (place === data.name) {
-                map_data = data;
+            if (p === data.name)
                 data.selected = true;
-            }
             Arr.push(data);
         });
-        this.setState({ map_info: Arr });
+        this.setState({ place_info: Arr });
+    }
+
+    select_place = (place) => {
+        this.on_place_highlight(place);
+
+        // set daily map data
+        // parse data for daily chart display
+        let cat = [];
+        let max = 10; let pum = []; let pui = []; let pc = []; let d = []; let r = [];
+        (this.state.incov_data || []).map((data) => {
+            if (data.name === place) {
+                //console.log("cat -> ", data.date);
+                cat.push( this.tmonth[data.date.getMonth()] + " " + data.date.getDate() + ", " + data.date.getFullYear() )
+                const pum_t = data.ncov_info.pum; const pui_t = data.ncov_info.pui;
+                const pc_t = data.ncov_info.pc;   const d_t = data.ncov_info.d;
+                const r_t = data.ncov_info.r;
+
+                pum.push(pum_t);            pui.push(pui_t);
+                pc.push(data.ncov_info.pc); d.push(d_t);
+                r.push(r_t);
+                
+                pum_t > max ? max = pum_t : max = max; pui_t > max ? max = pui_t : max = max;
+                pc_t > max ? max = pc_t : max = max;   d_t > max ? max = d_t : max = max;
+                r_t > max ? max = r_t : max = max;
+            }
+        });
+
+        /*console.log("pum -> ", pum);
+        console.log("pui -> ", pui);
+        console.log("pc -> ", pc);
+        console.log("d -> ", d);
+        console.log("r -> ", r);
+        console.log("cat -> ", cat);
+        console.log('max -> ',max); */
+
+        // set daily chart series
+        let series = [
+            {
+                name: "PUM",
+                data: pum
+            },
+            {
+                name: "PUI",
+                data: pui
+            },
+            {
+                name: "Positive Cases",
+                data: pc
+            },
+            {
+                name: "Deaths",
+                data: d
+            },
+            {
+                name: "Recoveries",
+                data: r
+            }
+        ];
+
+        //console.log("series -> ", series);
+        this.setState({ series: series, 
+            options: { 
+                ...this.state.options, 
+                yaxis: { title: { text: "Number" }, min: 0, max: max + 5 },
+                xaxis: { categories: cat, title: { text: 'Date' } }, 
+                title: { text: place + " - Daily Records", align: 'left' } 
+            },
+        });
     }
 
     render_provinces = () => {
@@ -102,9 +427,9 @@ class DailyCharts extends Component {
                 </p>
                 <ul class="list-group list-group-flush">
                     {
-                        (this.state.map_info || []).map((data, index) => {
+                        (this.state.place_info || []).map((data, index) => {
                             return (
-                                <a type="button" onClick={() => this.set_map_data(data.name)}>
+                                <a type="button" onClick={() => this.select_place(data.name)}>
                                     <li class={"list-group-item ".concat(data.selected ? "bg-dark text-light" : "")}>
                                         <strong>{data.name}</strong>
                                     </li>
@@ -120,7 +445,21 @@ class DailyCharts extends Component {
     render_chart = () => {
         return (
             <>
-                <MyChart />
+                <br />
+                <div className="row">
+                    <div className="col-lg-1 col-xl-1"></div>
+                    <div className="col-lg-10 col-xl-10 col-sm-12 col-md-12">
+                        <div class="card">
+                            <div className="card-body">
+                                <Chart
+                                    options={this.state.options}
+                                    series={this.state.series}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-1 col-xl-1"></div>
+                </div>
             </>
         );
     }
@@ -130,23 +469,20 @@ class DailyCharts extends Component {
             <>
                 <NavigationBar nav_active="daily-charts" />
                 <br /><br /><br />
-                <div className="container-fluid">
+                <div className="container-fluid mt-n3">
                     <div className="row">
-                        <div className="col-sm-3 scroll">
+                        <div className="col-sm-3">
                             {this.render_provinces()}
                         </div>
 
-                        <div className="col-sm-7 bg-primary">
+                        <div className="col-sm-9">
                             {this.render_chart()}
-                        </div>
-
-                        <div className="col-sm-2 bg-dark">
-                            <h3>INFO</h3>
                         </div>
 
 
                     </div>
                 </div>
+                <br /><br /><br /><br /><br />
                 <Footer />
             </>
         );
@@ -154,7 +490,7 @@ class DailyCharts extends Component {
 
     render() {
         return (
-            <>  
+            <>
                 {
                     this.render_mainComponent()
                 }
@@ -162,48 +498,5 @@ class DailyCharts extends Component {
         );
     }
 }
-
-
-
-const MyChart = () => {
-    const data = React.useMemo(
-        () => [
-            {
-                label: 'Series 1',
-                data: [[0, 1], [1, 2], [2, 4], [3, 2], [4, 7]]
-            },
-            {
-                label: 'Series 2',
-                data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
-            }
-        ],
-        []
-    )
-
-    const axes = React.useMemo(
-        () => [
-            { primary: true, type: 'linear', position: 'bottom' },
-            { type: 'linear', position: 'left' }
-        ],
-        []
-    )
-
-    const lineChart = (
-        // A react-chart hyper-responsively and continuusly fills the available
-        // space of its parent element automatically
-        <div
-            style={{
-                width: '400px',
-                height: '300px'
-            }}
-        >
-            <Chart data={data} axes={axes} />
-        </div>
-    )
-
-    return lineChart;
-}
-
-
 
 export default DailyCharts;
