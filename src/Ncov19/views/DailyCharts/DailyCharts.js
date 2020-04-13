@@ -120,6 +120,7 @@ class DailyCharts extends Component {
     render_chart = () => {
         return (
             <>
+                <h1>My Chart</h1>
                 <MyChart />
             </>
         );
@@ -154,7 +155,7 @@ class DailyCharts extends Component {
 
     render() {
         return (
-            <>
+            <>  
                 {
                     this.render_mainComponent()
                 }
