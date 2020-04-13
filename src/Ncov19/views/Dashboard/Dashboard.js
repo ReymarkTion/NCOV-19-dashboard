@@ -387,14 +387,14 @@ class Dashboard extends Component {
             <>
                 <NavigationBar nav_active="home" />
                 <br /><br /><br />
-                <div className="container-fluid">
+                <div className="container-fluid mt-n3">
                     <div className="row">
                         <div className="col-sm-3 scroll">
                             { this.render_provinces() }
                             { this.render_facilities() }
                         </div>
 
-                        <div className="col-sm-7 mr-n3">
+                        <div className="col-sm-7 bg-primary">
                             <LeafletMapView mapData={this.state.map_data} />
                         </div>
 
