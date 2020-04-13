@@ -1,0 +1,12 @@
+#sidebar-parent > div > div:nth-child(3) {
+    -webkit-overflow-scrolling: touch;
+  }
+
+div.scroll{
+    width: 600px; 
+    height: 600px; 
+    overflow-x: hidden; 
+    overflow-y: auto;
+    text-align: center; 
+}
+  
