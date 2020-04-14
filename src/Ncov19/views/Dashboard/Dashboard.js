@@ -21,7 +21,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             map_data: {
-                name: '',
+                name: 'Region X - Northern Mindanao',
                 pos: [8.0202, 124.6857],
                 zoom: 8.45
             },
