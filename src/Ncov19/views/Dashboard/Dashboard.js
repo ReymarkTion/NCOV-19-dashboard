@@ -26,6 +26,8 @@ class Dashboard extends Component {
                 zoom: 8.45
             },
             ncov_info: { pum: 0, pui: 0, pc: 0, d: 0, r: 0 },
+            
+            // kani ra na data e update
             map_info: [
                 {
                     name: "Bukidnon",
@@ -77,6 +79,7 @@ class Dashboard extends Component {
                     ncov_info: { pum: 667, pui: 121, pc: 323, d: 0, r: 5655 }
                 }
             ],
+
             facilities: [],
             cache_key: "pui_per-facility",
             ncov_info_sidebar: 'cm' // f = facility, cm = city/municipality
