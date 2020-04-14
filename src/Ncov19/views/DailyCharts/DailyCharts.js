@@ -17,6 +17,7 @@ class DailyCharts extends Component {
 
             // -------------------------------------------------------------
             /**
+             *  Dummy data - Kai ra na data e change na gikan sa server, same lang ani ang format
              *  Note: This data must be sorted in ascending order
              *  from the server
              */
@@ -703,7 +704,7 @@ class DailyCharts extends Component {
                         </div>
                     </div>
                 </div>
-                <br /><br /><br /><br /><br />
+                <br /><br />
                 <Footer />
             </>
         );
