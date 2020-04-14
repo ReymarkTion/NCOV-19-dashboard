@@ -247,7 +247,7 @@ class DailyCharts extends Component {
 
             stat: [
                 {
-                    name: "Persons Under Moitoring",
+                    name: "Persons Under Monitoring",
                     selected: false
                 },
                 {
@@ -577,7 +577,7 @@ class DailyCharts extends Component {
         (latest_data || []).map(data => {
             cat.push(data.name);
             switch (st) {
-                case "Persons Under Moitoring":
+                case "Persons Under Monitoring":
                     color = '#620ef1';
                     data.ncov_info.pum > max ? max = data.ncov_info.pum : max = max;
                     sb.push(data.ncov_info.pum);
