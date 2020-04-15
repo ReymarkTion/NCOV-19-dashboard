@@ -15,33 +15,17 @@ class StudentPage extends Component {
     }
 
     componentWillMount = () => {
-
+        document.title = "NCOV-19";
     }
-
-    set_section = (val) => {
-        //console.log(val);
-        /*$.post("/api/v1/admin/set_section", { section_id: val },(data) => {
-            //console.log(data);
-            if (data.status === "success")
-                this.setState({ section_select: false, loading: true });
-        }).fail((data, textStatus, xhr) => {
-            console.log("STATUS: " + xhr);
-            //console.log(data);
-        }).always(() => {
-            console.log('ended');
-            //console.log(this.state);
-        }); */
-    }
-
 
     render_mainComponent() {
         return (
             <Switch>
                 {routes.map((prop, key) => {
-                    if (prop.layout === "/") {
+                    if (prop.layout === "/ncov19") {
                         return (
                             <Route
-                                path={/*prop.layout + */prop.path}
+                                path={prop.layout + prop.path}
                                 component={prop.component}
                                 key={key}
                             />
@@ -49,7 +33,7 @@ class StudentPage extends Component {
                     }
                     return null;
                 })}
-                <Redirect from="/" to="/dashboard" />
+                <Redirect from="/ncov19" to="/ncov19/dashboard" />
             </Switch>
         );
     }
