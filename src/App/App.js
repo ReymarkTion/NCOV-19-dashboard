@@ -4,7 +4,7 @@ import { Route, Router, Switch, Redirect } from 'react-router-dom';
 
 import { history, withAuth } from '../_helper';
 import Ncov19 from '../Ncov19/layouts/Ncov19';
-import ICPEP_SE from '../ICPEP_SE/layouts/ICPEP_SE';
+//import ICPEP_SE from '../ICPEP_SE/layouts/ICPEP_SE';
 
 export class App extends React.Component {
   render() {
