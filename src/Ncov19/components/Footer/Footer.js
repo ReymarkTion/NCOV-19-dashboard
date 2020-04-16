@@ -3,7 +3,7 @@ export default function Footer() {
     return (
         <footer id="sticky-footer" className="py-4 bg-dark text-white-50">
             <div className="container text-center">
-                <small>Copyright &copy; ICPEP.SE - University of Science and Technology of Southern Philippines</small>
+                <small>An initiative by ICpEP.SE-USTP in collaboration with Reymark M. Tion</small>
             </div>
         </footer>
     );
