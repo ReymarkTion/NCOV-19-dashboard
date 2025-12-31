@@ -12,7 +12,7 @@
     "draft-js-focus-plugin": "^3.0.1",
     "draft-js-image-plugin": "^2.0.7",
     "draft-js-plugins-editor": "^3.0.0",
-    "express": "^4.17.1",
+    "express": "^4.22.1",
     "history": "4.9.0",
     "jquery": "^3.4.1",
     "jquery-slim": "^3.0.0",
@@ -38,7 +38,7 @@
     "react-popper": "^1.3.7",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^5.0.1",
     "react-scroll": "^1.7.16",
     "react-swipeable-views": "0.13.3"
   },
